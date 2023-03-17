@@ -8,6 +8,11 @@ class ApiService {
   // await를 쓰고 싶으면 async를 써야됨
   void getTodaysToons() async {
     final url = Uri.parse('$baseUrl/$today');
-    await http.get(url);
+    final respones = await http.get(url);
+    if (respones.statusCode == 200) {
+      print(respones.body);
+      return;
+    }
+    throw Error();
   }
 }
